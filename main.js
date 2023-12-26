@@ -43,6 +43,24 @@ const createProduto = (produto) => {
     setLocalStorage(dbProduto)
 }
 
+const isValidFields = () => {
+   return document.getElementById('form').reportValidity()
+}
+
+//Interação com o usuario
+const saveProduto = () => {
+    if (isValidFields()) {
+        const produto = {
+            nome: document.getElementById('nome').value,
+            codigo: document.getElementById('codigo').value,
+            descricao: document.getElementById('descricao').value,
+            preco: document.getElementById('preco').value
+        }
+        createProduto(produto)
+        clearFields()
+        closeModal()
+    }
+}
 
 //Eventos
 document.getElementById('cadastrarProduto')
@@ -50,3 +68,6 @@ document.getElementById('cadastrarProduto')
 
 document.getElementById('modalClose')
     .addEventListener('click', closeModal)
+
+document.getElementById('salvar')
+    .addEventListener('click', saveProduto)

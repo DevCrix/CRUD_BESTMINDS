@@ -68,15 +68,15 @@
                     <h2>Novo Produto</h2>
                     <span class="modal-close" id="modalClose">&#10006;</span>
                 </header>
-                <form class="modal-form">
-                    <input type="text" class="modal-field" placeholder="Nome do Produto">
-                    <input type="text" class="modal-field" placeholder="Código do Produto">
-                    <input type="text" class="modal-field" placeholder="Descrição do Produto">
-                    <input type="text" class="modal-field" placeholder="Preço do Produto">
-                </form>
+                <form id="form" class="modal-form">
+                    <input type="text" id="nome" class="modal-field" placeholder="Nome do Produto" required>
+                    <input type="text" id="codigo" class="modal-field" placeholder="Código do Produto" required>
+                    <input type="text" id="descricao" class="modal-field" placeholder="Descrição do Produto" required>
+                    <input type="number" id="preco" class="modal-field" placeholder="Preço do Produto" step="any" required>
+
                 <footer class="modal-footer">
-                    <button class="button green">Salvar</button>
-                    <button class="button blue">Cancelar</button>
+                    <button id="salvar" class="button green">Salvar</button>
+                    <button id="cancelar" class="button blue">Cancelar</button>
                 </footer>
             </div>
         </div>
