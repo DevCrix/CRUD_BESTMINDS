@@ -19,7 +19,7 @@
     </header>
     <main>
         <button type="button" class="button blue mobile" id="cadastrarProduto">Cadastrar Produto</button>
-        <table class="records">
+        <table id="tableProduto" class="records">
             <thead>
                 <tr>
                     <th>Produto</th>
@@ -30,7 +30,7 @@
                 </tr>
             </thead>
             <tbody>
-                <tr>
+                <!-- <tr>
                     <td>Bola de futebol</td>
                     <td>Bol001</td>
                     <td>Bola de couro</td>
@@ -59,7 +59,7 @@
                         <button type="button" class="button green">editar</button>
                         <button type="button" class="button red">excluir</button>
                     </td>
-                </tr>
+                </tr> -->
             </tbody>
         </table>
         <div class="modal" id="modal">
@@ -69,10 +69,10 @@
                     <span class="modal-close" id="modalClose">&#10006;</span>
                 </header>
                 <form id="form" class="modal-form">
-                    <input type="text" id="nome" class="modal-field" placeholder="Nome do Produto" required>
-                    <input type="text" id="codigo" class="modal-field" placeholder="Código do Produto" required>
-                    <input type="text" id="descricao" class="modal-field" placeholder="Descrição do Produto" required>
-                    <input type="number" id="preco" class="modal-field" placeholder="Preço do Produto" step="any" required>
+                    <input type="text" id="nome" data-index="new" class="modal-field" placeholder="Nome do Produto">
+                    <input type="text" id="codigo" class="modal-field" placeholder="Código do Produto">
+                    <input type="text" id="descricao" class="modal-field" placeholder="Descrição do Produto">
+                    <input type="number" id="preco" class="modal-field" placeholder="Preço do Produto" step="any">
 
                 <footer class="modal-footer">
                     <button id="salvar" class="button green">Salvar</button>
