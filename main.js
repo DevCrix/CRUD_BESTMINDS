@@ -53,7 +53,9 @@ const clearFields = () => {
 }
 
 //Função para salvar um produto
-const saveProduto = () => {
+const saveProduto = (event) => {
+    event.preventDefault(); // Impede o envio padrão do formulário
+
     if (isValidFields()) {
         const produto = {
             nome: document.getElementById('nome').value,
@@ -73,6 +75,13 @@ const saveProduto = () => {
         }
     }
 }
+
+// ...
+
+// Evento de envio do formulário
+document.getElementById('form')
+    .addEventListener('submit', saveProduto);
+
 
 //Função para crirar uma nova linha na tabela
 const createRow = (produto, index) => {
