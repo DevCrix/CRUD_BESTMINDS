@@ -65,54 +65,57 @@ function formatarValorBRL(valor) {
 
 // Função para salvar um produto
 const saveProduto = (event) => {
-    event.preventDefault(); // Impede o envio padrão do formulário
-    let valorFormatado1 = document.getElementById('preco').value;
-    let num = 'R$ ' + Number(valorFormatado1).toLocaleString('pt-BR').replace(".", ",");
-    let valorFormatado2 = num;
-    let codigo ='CÓD ' +  document.getElementById('codigo').value;
+    event.preventDefault();
 
-    try {
-        if (isValidFields()) {
-            const produto = {
-                nome: document.getElementById('nome').value,
-                codigo: codigo,
-                descricao: document.getElementById('descricao').value,
-                preco: valorFormatado2
-            };
+    const nome = document.getElementById('nome').value;
+    const codigo = 'CÓD ' +  document.getElementById('codigo').value;
+    const descricao = document.getElementById('descricao').value;
+    const precoInput = document.getElementById('preco');
+    const precoValue = precoInput.value;
 
-            const index = document.getElementById('nome').dataset.index;
-            if (index == 'new') {
-                createProduto(produto);
-                updateTable();
-                closeModal();
-                Toastify({
-                    text: "Produto salvo com sucesso!",
-                    duration: 3000,
-                    gravity: "bottom",
-                    position: "right",
-                    backgroundColor: "green",
-                }).showToast();
-            } else {
-                updateProduto(index, produto);
-                updateTable();
-                closeModal();
-                Toastify({
-                    text: "Produto editado com sucesso!",
-                    duration: 3000,
-                    gravity: "bottom",
-                    position: "right",
-                    backgroundColor: "green",
-                }).showToast();
-            }
-        }
-    } catch (error) {
-        console.error("Erro ao salvar o produto:", error);
+    // Verificar se o preço é um número válido
+    const preco = parseFloat(precoValue.replace('R$ ', '').replace(',', '.'));
+
+    if (isNaN(preco)) {
         Toastify({
-            text: "Erro ao salvar o produto. Por favor, tente novamente.",
+            text: "Por favor, insira um preço válido.",
             duration: 3000,
             gravity: "bottom",
             position: "right",
             backgroundColor: "red",
+        }).showToast();
+        return;
+    }
+
+    const produto = {
+        nome: nome,
+        codigo: codigo,
+        descricao: descricao,
+        preco: 'R$ ' + preco.toLocaleString('pt-BR', { minimumFractionDigits: 2 })
+    };
+
+    const index = document.getElementById('nome').dataset.index;
+    if (index == 'new') {
+        createProduto(produto);
+        updateTable();
+        closeModal();
+        Toastify({
+            text: "Produto salvo com sucesso!",
+            duration: 3000,
+            gravity: "bottom",
+            position: "right",
+            backgroundColor: "green",
+        }).showToast();
+    } else {
+        updateProduto(index, produto);
+        updateTable();
+        closeModal();
+        Toastify({
+            text: "Produto editado com sucesso!",
+            duration: 3000,
+            gravity: "bottom",
+            position: "right",
+            backgroundColor: "green",
         }).showToast();
     }
 };
