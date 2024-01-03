@@ -43,12 +43,12 @@ const deleteProduto = (index) => {
         const dbProduto = readProduto();
         dbProduto.splice(index, 1);
         setLocalStorage(dbProduto);
-        console.log("Produto deletado com sucesso!");
-        updateTable(); // Adiciona essa linha para atualizar a tabela após a exclusão.
+        updateTable();
     } catch (error) {
         console.error("Erro ao deletar o produto:", error);
     }
 };
+
 
 
 //Interação com o usuario
@@ -61,14 +61,14 @@ const clearFields = () => {
 
 function formatarValorBRL(valor) {
     return valor.toLocaleString('pt-BR'), { style: 'currency', currency: 'BRL' };
-  }
+}
 
 // Função para salvar um produto
 const saveProduto = (event) => {
     event.preventDefault();
 
     const nome = document.getElementById('nome').value;
-    const codigo = 'CÓD ' +  document.getElementById('codigo').value;
+    const codigo = document.getElementById('codigo').value;
     const descricao = document.getElementById('descricao').value;
     const precoInput = document.getElementById('preco');
     const precoValue = precoInput.value;
